@@ -8,35 +8,33 @@
 // Nome repo: js-jq-ajax-grigliaquad
 // -----------------------------------------------------------------------------
 var side = 6; // lato griglia
-var gridSize = side * side; // dimensione griglia, numero di elementi di cui è composta
+var gridSize = side * side; // dimensione griglia, numero di celle di cui è composta
 
-// creo la griglia di (side x side) elementi
+// creo la griglia di (side x side) celle
 createGrid();
 
-// intercetto click su una cella
+// intercetto click sulle celle
 $('.cell').click(function() {
 
-    // mi salvo il riferimento alla cella cliccata
-    var clicked = $(this);
+    var clicked = $(this); // mi salvo il riferimento alla cella cliccata
+    var randomInt0_9 = 'https://flynn.boolean.careers/exercises/api/random/int';
 
-    // eseguo una chiamata AJAX per avere un numero random
+    // eseguo una chiamata AJAX
     $.ajax({
-        // chiamo una API che mi rstituisce un numero random tra 0 e 9
-        url: 'https://flynn.boolean.careers/exercises/api/random/int',
+        // chiamo una API che mi rstituisce un numero intero random tra 0 e 9
+        url: randomInt0_9,
         // sono io client che richiedo dei dati
         method: 'GET',
         // la chiamata è andata bene, utilizzo i dati ritornati
         success: function(data) {
             // mi salvo il valore ritornato dalla API
             var randomNumber = data.response;
-            console.log("data:", data);
-            console.log("data.response:", data.response);
             // chiamo una funzione che utilizza il dato in risposta ricevuto dalla API
             setCell(clicked, randomNumber);
         },
         // qui sotto ci arrivo se la API da' errore
         error: function(error) {
-            console.log("Errore dalla chiamata alla API");
+            alert("Errore dalla chiamata API");
         }
     }); // fine chiamata AJAX
 
