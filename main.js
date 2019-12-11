@@ -21,8 +21,11 @@ $('.cell').click(function() {
 
     // eseguo una chiamata AJAX per avere un numero random
     $.ajax({
+        // chiamo una API che mi rstituisce un numero random tra 0 e 9
         url: 'https://flynn.boolean.careers/exercises/api/random/int',
+        // sono io client che richiedo dei dati
         method: 'GET',
+        // la chiamata è andata bene, utilizzo i dati ritornati
         success: function(data) {
             // mi salvo il valore ritornato dalla API
             var randomNumber = data.response;
@@ -31,12 +34,14 @@ $('.cell').click(function() {
             // chiamo una funzione che utilizza il dato in risposta ricevuto dalla API
             setCell(clicked, randomNumber);
         },
-        error: function(err) {
-            console.log("error");
+        // qui sotto ci arrivo se la API da' errore
+        error: function(error) {
+            console.log("Errore dalla chiamata alla API");
         }
     }); // fine chiamata AJAX
 
 }); // fine document ready
+
 
 // ---------------------------- FUNCTIONs --------------------------------------
 function createGrid() {
@@ -52,13 +57,15 @@ function createGrid() {
 
 
 function setCell(clickedCell, randomNum) {
-    console.log("cella cliccata!");
-    // aggiorno colore cella, in clickedCell ho il riferimento all'elemento appena cliccato
+
+    // in clickedCell ho il riferimento all'elemento appena cliccato
+    // in randomNum, il numero casuale tra 0 e 9, ottenuto dalla chiamata alla API
     $(clickedCell).html(randomNum); // aggiungo il numero random generato
 
+    // in base al valore del numero random coloro la cella
     if (randomNum <= 5) {
-        $(clickedCell).addClass('yellow').removeClass('green'); // con la classe green cambio il background-color
+        $(clickedCell).addClass('yellow').removeClass('green'); // imposto a giallo il colore di sfondo
     } else {
-        $(clickedCell).addClass('green').removeClass('yellow'); // con la classe green cambio il background-color
+        $(clickedCell).addClass('green').removeClass('yellow'); // imposto a verde il colore di sfondo
     }
 }
