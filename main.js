@@ -31,7 +31,7 @@ $('.cell').click(function() {
             // chiamo una funzione che utilizza il dato in risposta ricevuto dalla API
             setCell(clicked, randomNumber);
         },
-        error: function() {
+        error: function(err) {
             console.log("error");
         }
     }); // fine chiamata AJAX
