@@ -1,0 +1,56 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+h1 {
+    color: red;
+}
+
+/* evito l'effetto "selezione" (azzurro), su chrome */
+.noselect {
+    user-select: none;
+}
+
+#container {
+    font-family: sans-serif;
+    font-size: 14px;
+    background-color: lightgrey;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+}
+
+.grid-container {
+    border: 1px solid black;
+    display: flex;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    width: 242px;
+    height: 242px;
+}
+
+.cell {
+    border: 1px solid black;
+    flex-shrink: 0;
+    width: 40px;
+    height: 40px;
+    background-color: white;
+    cursor: pointer;
+    font-size: 24px;
+    text-align: center;
+    line-height: 40px;
+}
+
+.yellow {
+    background-color: lightyellow;
+}
+
+.green {
+    background-color: lightgreen;
+}
